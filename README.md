@@ -17,10 +17,12 @@ This repository contains all the materials, curriculum, and code projects for th
 Learn to use an AI agent (Gemini 3.1 Pro) to clone a reference URL into a Next.js project.
 - **Marketplace Example**: [Framer Templates](https://www.framer.com/marketplace/templates)
 - **The example we use**: [xtract.framer.ai](https://xtract.framer.ai/)
+- 📝 **Assignment**: [Day 1 Assignment](class-materials/day_1_assignment.md)
 
 **Day 1 Projects:**
 - 💻 **`landing-page/`**: First vibecoding session code for the landing page clone.
 - 💻 **`landing_page_2/`**: Second vibecoding session code for the landing page clone.
+- 📜 **Chat History**: [Live Demo Chat History](live_demo_chat_history.md) detailing the AI workflow for `landing_page_2`.
 
 ### ⚙️ Day Two: Build the Backend
 - **Tutor**: Zach Wilson
