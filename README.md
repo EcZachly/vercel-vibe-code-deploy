@@ -17,7 +17,7 @@ This repository contains all the materials, curriculum, and code projects for th
     - `slides-build-landing-page.html`: Guide on vibecoding a landing page.
     - `slides-adal-cli-howto.html`: Instructions on using the AdaL CLI tool.
 - `landing-page/`: **Day 1: Clone the style of any website** - First vibecoding session where an AI agent using Gemini 3.1 Pro clones a **reference URL** into a Next.js project.
-- `landing_page_2/`: Second vibecoding session where an AI agent using Gemini 3.1 Pro clones a **reference URL** into a Next.js project.
+- `landing_page_2/`: **Day 2: Build the backend** (Tutor: Zach Wilson) - Second vibecoding session where an AI agent using Gemini 3.1 Pro clones a **reference URL** into a Next.js project.
 - `AGENTS.md`: Guidelines and context for AI agents working in this repository.
 
 ## 🛠️ Getting Started
