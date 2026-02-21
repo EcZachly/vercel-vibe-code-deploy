@@ -1,4 +1,5 @@
-# Session Chat History (34c61421-1eff-46e5-bd34-9cbb98f7ac42)
+# Session Chat History
+**Model:** Gemini 3.1 Pro
 
 ## Turn 1
 **User:** do u have chrome dev tool
