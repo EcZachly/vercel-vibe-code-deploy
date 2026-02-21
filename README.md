@@ -11,27 +11,29 @@ Welcome to the AdaL Vibecoding Bootcamp repository! 🚀
 
 This repository contains all the materials, curriculum, and code projects for the bootcamp.
 
-## 🗓️ Bootcamp Schedule
+## 🗓️ Bootcamp Schedule & Structure
 
-- 🎨 **Day 1: Clone the style of any website**
-  - Learn to use an AI agent (Gemini 3.1 Pro) to clone a reference URL into a Next.js project.
-  - **Marketplace Example**: [Framer Templates](https://www.framer.com/marketplace/templates)
-  - **The example we use**: [xtract.framer.ai](https://xtract.framer.ai/)
+### 🎨 Day One: Build the SaaS Landing Page
+Learn to use an AI agent (Gemini 3.1 Pro) to clone a reference URL into a Next.js project.
+- **Marketplace Example**: [Framer Templates](https://www.framer.com/marketplace/templates)
+- **The example we use**: [xtract.framer.ai](https://xtract.framer.ai/)
 
-- ⚙️ **Day 2: Build the backend**
-  - **Tutor**: Zach Wilson
-  - Transition from the frontend landing page to building a robust backend infrastructure.
+**Day 1 Projects:**
+- 💻 **`landing-page/`**: First vibecoding session code for the landing page clone.
+- 💻 **`landing_page_2/`**: Second vibecoding session code for the landing page clone.
+
+### ⚙️ Day Two: Build the Backend
+- **Tutor**: Zach Wilson
+- Transition from the frontend landing page to building a robust backend infrastructure.
 
 ---
 
-## 📚 Repository Structure
+## 📚 Core Learning Resources
 
-- 📂 **`class-materials/`**: Core learning resources.
+- 📂 **`class-materials/`**: 
   - 📄 `01_bootcamp_curriculum_short.md`: Bootcamp structure and goals.
   - 📊 `slides-build-landing-page.html`: Guide on vibecoding a landing page.
   - 📊 `slides-adal-cli-howto.html`: Instructions on using the AdaL CLI tool.
-- 💻 **`landing-page/`**: First vibecoding session code for the landing page clone.
-- 💻 **`landing_page_2/`**: Second vibecoding session code for the landing page clone.
 - 🤖 **`AGENTS.md`**: Guidelines and context for AI agents working in this repository.
 
 ## 🛠️ Getting Started
