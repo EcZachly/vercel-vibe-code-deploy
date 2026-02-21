@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdaL CLI How-To - Vibe Coding Bootcamp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0A0E1A;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, #0A0E1A 0%, #1A1F3A 100%);
+            border-bottom: 1px solid #141828;
+        }
+        
+        .slide:last-child {
+            border-bottom: none;
+        }
+        
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(90deg, #00FF88, #00D4FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: #00FF88;
+        }
+        
+        h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #00D4FF;
+        }
+        
+        p {
+            font-size: 20px;
+            color: #A0A0B0;
+            margin-bottom: 16px;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            color: #A0A0B0;
+            margin-bottom: 40px;
+        }
+        
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            background: #141828;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #00FF88;
+        }
+        
+        pre {
+            background: #141828;
+            padding: 24px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 16px 0;
+            border: 1px solid #2A2F4A;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+        
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #2A2F4A;
+        }
+        
+        th {
+            background: #141828;
+            font-weight: 600;
+            color: #00FF88;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        td {
+            font-size: 16px;
+            color: #E0E0E0;
+        }
+        
+        tr:hover td {
+            background: #141828;
+        }
+        
+        .highlight {
+            color: #00FF88;
+            font-weight: 600;
+        }
+        
+        .green { color: #00FF88; }
+        .cyan { color: #00D4FF; }
+        .gold { color: #FFD700; }
+        .gray { color: #A0A0B0; }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .card {
+            background: #141828;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #2A2F4A;
+        }
+        
+        .card h4 {
+            font-size: 18px;
+            color: #00FF88;
+            margin-bottom: 12px;
+        }
+        
+        .card p {
+            font-size: 15px;
+            color: #A0A0B0;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        ul li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            font-size: 18px;
+            color: #E0E0E0;
+        }
+        
+        ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #00FF88;
+        }
+        
+        .emoji {
+            font-size: 32px;
+            margin-right: 12px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #00FF88;
+            color: #0A0E1A;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+        
+        .badge-outline {
+            display: inline-block;
+            border: 1px solid #00FF88;
+            color: #00FF88;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+        
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .do, .dont {
+            padding: 24px;
+            border-radius: 12px;
+        }
+        
+        .do {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00FF88;
+        }
+        
+        .dont {
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid #FF6464;
+        }
+        
+        .do h4, .dont h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        
+        .do h4 { color: #00FF88; }
+        .dont h4 { color: #FF6464; }
+        
+        .do li::before { content: "✓"; color: #00FF88; }
+        .dont li::before { content: "✗"; color: #FF6464; }
+        
+        .slide-number {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            font-size: 14px;
+            color: #4A4A5A;
+        }
+        
+        .logo {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            font-size: 14px;
+            color: #4A4A5A;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide">
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+        <img src="adal-face-logo.svg" alt="AdaL" style="height: 90px;">
+        <img src="adal-text-logo.svg" alt="AdaL" style="height: 50px; margin-left: -10px;">
+    </div>
+    <p class="subtitle">Your AI Coding Agent in the Terminal</p>
+    <p>Master the essential commands, shortcuts, and workflows to 10x your development speed.</p>
+    <div style="margin-top: 40px;">
+        <span class="badge">Free</span>
+        <span class="badge-outline">$5 Credits</span>
+    </div>
+    <div class="slide-number">1</div>
+</div>
+
+<!-- Slide 2: Install & Launch -->
+<div class="slide">
+    <h2>🚀 Get Started</h2>
+    
+    <h3>Install</h3>
+    <pre><code>npm install -g @sylphai/adal-cli</code></pre>
+    
+    <h3>Launch</h3>
+    <pre><code>adal</code></pre>
+    
+    <h3>First Things First</h3>
+    <ul>
+        <li>Type <code>/help</code> — See all commands</li>
+        <li>Type <code>?</code> — Show keyboard shortcuts</li>
+    </ul>
+    
+    <div class="slide-number">2</div>
+</div>
+
+<!-- Slide 3: Essential Commands -->
+<div class="slide">
+    <h2>⌨️ Essential Commands</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Command</th>
+                <th>What it does</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>/help</code></td>
+                <td>Show all available commands</td>
+            </tr>
+            <tr>
+                <td><code>/model</code></td>
+                <td>Switch between AI models</td>
+            </tr>
+            <tr>
+                <td><code>/init</code></td>
+                <td>Generate AGENTS.md for project context</td>
+            </tr>
+            <tr>
+                <td><code>/clear</code></td>
+                <td>Clear conversation history</td>
+            </tr>
+            <tr>
+                <td><code>/compact</code></td>
+                <td>Compress conversation memory</td>
+            </tr>
+            <tr>
+                <td><code>/mcp</code></td>
+                <td>Manage MCP servers</td>
+            </tr>
+            <tr>
+                <td><code>/skills</code></td>
+                <td>View available skills</td>
+            </tr>
+            <tr>
+                <td><code>/plugin</code></td>
+                <td>Manage plugins & marketplaces</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="slide-number">3</div>
+</div>
+
+<!-- Slide 3.5: CLI UI Experience -->
+<div class="slide">
+    <h2>🖥️ CLI UI — No Compromises</h2>
+    
+    <p>AdaL CLI has a powerful UI that matches the web experience:</p>
+    
+    <div class="two-column" style="margin-top: 32px;">
+        <div class="card">
+            <h4>🖱️ Click Anywhere to Move</h4>
+            <p>Click anywhere in the input area to position cursor — no need for arrow keys or &lt;/&gt;</p>
+        </div>
+        <div class="card">
+            <h4>👁️ Click to Review Diffs</h4>
+            <p>Click on any file change to expand and review the full diff before accepting</p>
+        </div>
+    </div>
+    
+    <div class="card" style="margin-top: 24px;">
+        <h4>⚡ CLI vs Web UI vs IDE</h4>
+        <table style="margin-top: 12px;">
+            <tr>
+                <td>Feature</td>
+                <td>AdaL CLI</td>
+                <td>Web UI</td>
+                <td>IDE</td>
+            </tr>
+            <tr>
+                <td>Click to move cursor</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>Click to review diffs</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>Keyboard shortcuts</td>
+                <td>✅ Full</td>
+                <td>❌ Limited</td>
+                <td>✅ Full</td>
+            </tr>
+            <tr>
+                <td>Use anywhere</td>
+                <td>✅ Any terminal</td>
+                <td>❌ Browser only</td>
+                <td>❌ IDE required</td>
+            </tr>
+        </table>
+    </div>
+    
+    <p class="gray" style="margin-top: 24px;">Best of both worlds: IDE-like features + web UI simplicity + terminal flexibility</p>
+    
+    <div class="slide-number">3.5</div>
+</div>
+
+<!-- Slide 4: Essential Shortcuts -->
+<div class="slide">
+    <h2>⚡ Essential Shortcuts</h2>
+    
+    <div class="two-column">
+        <div>
+            <h3>Input & Navigation</h3>
+            <table>
+                <tr>
+                    <td><code>?</code></td>
+                    <td>Toggle shortcuts display</td>
+                </tr>
+                <tr>
+                    <td><code>ESC</code></td>
+                    <td>Clear input</td>
+                </tr>
+                <tr>
+                    <td><code>↑ / ↓</code></td>
+                    <td>Command history</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+L</code></td>
+                    <td>Clear screen (keep memory)</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <h3>Modes & Edits</h3>
+            <table>
+                <tr>
+                    <td><code>Shift+Tab</code></td>
+                    <td>Toggle auto-accept edits</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+P</code></td>
+                    <td>Toggle plan mode</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+C</code></td>
+                    <td>Cancel running task</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+R</code></td>
+                    <td>Expand/collapse thinking</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="slide-number">4</div>
+</div>
+
+<!-- Slide 5: Prefixes -->
+<div class="slide">
+    <h2>🔑 Essential Prefixes</h2>
+    
+    <div class="two-column">
+        <div class="card">
+            <h4>@ — File Targeting</h4>
+            <p>Give the AI specific file context</p>
+            <pre><code>@src/App.tsx fix this bug
+@utils/helper.ts generate tests</code></pre>
+        </div>
+        <div class="card">
+            <h4>! — Shell Command</h4>
+            <p>Run shell commands directly</p>
+            <pre><code>!npm run dev
+!git status
+!npx vercel deploy</code></pre>
+        </div>
+    </div>
+    
+    <div class="slide-number">5</div>
+</div>
+
+<!-- Slide 6: Auto-Accept Mode -->
+<div class="slide">
+    <h2>🔥 Auto-Accept Mode</h2>
+    
+    <p>When enabled, file edits are applied <span class="green">automatically</span> without confirmation.</p>
+    
+    <div class="card" style="margin-top: 24px;">
+        <h4>How to Enable</h4>
+        <p>Press <code>Shift+Tab</code> to toggle</p>
+    </div>
+    
+    <pre style="margin-top: 24px;"><code>[Auto-accept: ON]
+
+> Add error handling to all API endpoints
+
+✓ Edited src/api/users.ts
+✓ Edited src/api/products.ts
+✓ Edited src/api/orders.ts</code></pre>
+    
+    <p class="gray" style="margin-top: 16px;">⚠️ Use carefully — only when you trust the changes.</p>
+    
+    <div class="slide-number">6</div>
+</div>
+
+<!-- Slide 7: Plan Mode -->
+<div class="slide">
+    <h2>📋 Plan Mode</h2>
+    
+    <p>When enabled, AdaL helps you <span class="cyan">design and plan</span> without modifying code.</p>
+    
+    <div class="card" style="margin-top: 24px;">
+        <h4>How to Enable</h4>
+        <p>Press <code>Ctrl+P</code> to toggle</p>
+    </div>
+    
+    <pre style="margin-top: 24px;"><code>[Plan Mode: ON]
+
+> Plan how to implement rate limiting
+
+✓ Reading API structure...
+✓ Researching best practices...
+✓ Creating docs/plan_rate_limiting.md
+
+Created:
+- Current implementation analysis
+- Recommended approach (token bucket)
+- Files to modify
+- Step-by-step implementation</code></pre>
+    
+    <div class="slide-number">7</div>
+</div>
+
+<!-- Slide 8: Model Switching -->
+<div class="slide">
+    <h2>🧠 Model Switching</h2>
+    
+    <p>Use <code>/model</code> to switch between AI models for different tasks.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Best Model</th>
+                <th>Why</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Visual Design, UI</td>
+                <td><span class="green">Gemini 3 Pro / 3.1 Pro</span></td>
+                <td>Best aesthetic sense</td>
+            </tr>
+            <tr>
+                <td>Code & Debugging</td>
+                <td><span class="cyan">MiniMax M2.5 → Sonnet 4.5/4.6 → Opus 4.5/4.6</span></td>
+                <td>Cheapest → Most expensive</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="slide-number">8</div>
+</div>
+
+<!-- Slide 9: Ecosystem Overview -->
+<div class="slide">
+    <h2>🌿 AdaL Ecosystem</h2>
+    
+    <pre><code>AdaL CLI
+├── Core Tools (built-in)
+│   ├── File operations (read, edit, create)
+│   ├── Bash commands
+│   ├── Web search & URL fetching
+│   └── Image Read (user input + agent call read image)
+├── MCP Servers (external integrations)
+│   ├── Chrome DevTools (browser automation)
+│   ├── GitHub, Linear, Slack...
+│   └── /mcp command to manage
+└── Skills (domain expertise)
+    ├── /skills - view available
+    ├── /plugin - install from marketplaces
+    └── Load on-demand when relevant</code></pre>
+    
+    <div class="slide-number">9</div>
+</div>
+
+<!-- Slide 10: MCP -->
+<div class="slide">
+    <h2>🔌 MCP — Model Context Protocol</h2>
+    
+    <p>MCP servers extend your AI agent with <span class="green">external tools</span>.</p>
+    
+    <div class="three-column" style="margin-top: 32px;">
+        <div class="card">
+            <span class="emoji">🌐</span>
+            <h4>Chrome DevTools</h4>
+            <p>Browser automation, inspect sites, extract CSS</p>
+        </div>
+        <div class="card">
+            <span class="emoji">🐙</span>
+            <h4>GitHub</h4>
+            <p>Issues, PRs, repos</p>
+        </div>
+        <div class="card">
+            <span class="emoji">💬</span>
+            <h4>Slack</h4>
+            <p>Send messages, channels</p>
+        </div>
+    </div>
+    
+    <p style="margin-top: 32px;">Use <code>/mcp</code> to manage MCP servers</p>
+    
+    <div class="slide-number">10</div>
+</div>
+
+<!-- Slide 10.5: Bash Background Processes -->
+<div class="slide">
+    <h2>🖥️ Bash — Run Servers in Background</h2>
+
+    <p>AdaL's bash tool has two modes. Use <span class="green">background mode</span> to start a dev server — then MCP can screenshot and iterate without waiting.</p>
+
+    <div class="two-column" style="margin-top: 32px;">
+        <div class="card">
+            <h4>⚡ Normal Mode (blocks)</h4>
+            <pre><code>!npm run build
+# Waits until command finishes
+# Good for: builds, tests, installs</code></pre>
+            <p>AdaL waits for completion before responding.</p>
+        </div>
+        <div class="card">
+            <h4>🚀 Background Mode (non-blocking)</h4>
+            <pre><code>Start the dev server in the background
+so I can see the landing page
+
+# AdaL runs: npm run dev (background)
+# Returns PID immediately → keeps going</code></pre>
+            <p>Server starts, AdaL continues working.</p>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 28px;">
+        <h4>🔄 The Iterate Loop — Code → Run → See → Fix</h4>
+        <pre><code>1. AdaL starts dev server in background  →  localhost:3000 is live
+2. Chrome DevTools (MCP) takes a screenshot   →  sees the current state
+3. AdaL reads server logs for errors     →  checks progress output
+4. Edits code, screenshot again          →  iterate until perfect</code></pre>
+    </div>
+
+    <div class="card" style="margin-top: 24px; background: rgba(0,255,136,0.05); border-color: #00FF88;">
+        <h4>💡 Why This Matters</h4>
+        <table style="margin-top: 12px;">
+            <tr>
+                <th>Step</th>
+                <th>Tool</th>
+                <th>What happens</th>
+            </tr>
+            <tr>
+                <td>Start server</td>
+                <td><span class="green">Bash (background)</span></td>
+                <td>npm run dev → PID returned, server runs</td>
+            </tr>
+            <tr>
+                <td>Check progress</td>
+                <td><span class="green">Bash (get output)</span></td>
+                <td>Read logs: "compiled successfully on :3000"</td>
+            </tr>
+            <tr>
+                <td>See the page</td>
+                <td><span class="cyan">Chrome DevTools (MCP)</span></td>
+                <td>Screenshot localhost:3000 → AI sees result</td>
+            </tr>
+            <tr>
+                <td>Fix & repeat</td>
+                <td><span class="gold">AdaL edits files</span></td>
+                <td>Hot-reload updates page → screenshot again</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="slide-number">10.5</div>
+</div>
+
+<!-- Slide 11: Skills -->
+<div class="slide">
+    <h2>📋 Skills & Plugins</h2>
+    
+    <p>Skills are <span class="cyan">domain expertise packages</span> your agent can load on-demand.</p>
+    
+    <div class="two-column" style="margin-top: 32px;">
+        <div>
+            <h3>Commands</h3>
+            <ul>
+                <li><code>/skills</code> — View available skills</li>
+                <li><code>/plugin</code> — Install from marketplaces</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Why Skills Matter</h3>
+            <ul>
+                <li>Guide agent to follow best practices</li>
+                <li>Domain-specific knowledge</li>
+                <li>Load on-demand when relevant</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="card" style="margin-top: 24px; background: rgba(0,212,255,0.05); border-color: #00D4FF;">
+        <h4>� example: Clone Any Website Skill</h4>
+        <p style="font-size: 15px;">Today we'll use the <span class="cyan">Clone Any Website</span> skill — it defines the best workflow for:</p>
+        <ul style="font-size: 14px; margin-top: 12px;">
+            <li><span class="green">Chrome DevTools MCP</span> — Extract CSS, inspect DOM, take screenshots</li>
+            <li><span class="green">AdaL Image Read</span> — User pastes screenshots, agent reads visual output</li>
+        </ul>
+        <p style="font-size: 14px; margin-top: 12px; color: #A0A0B0;">The skill guides the agent through: screenshot → extract → clone → verify → iterate</p>
+    </div>
+    
+    <div class="slide-number">11</div>
+</div>
+
+<!-- Slide 12: AGENTS.md -->
+<div class="slide">
+    <h2>📐 AGENTS.md — Project Context</h2>
+    
+    <p><code>AGENTS.md</code> is a <span class="green">project-level instruction file</span> the agent reads automatically.</p>
+    
+    <div class="card" style="margin-top: 24px;">
+        <h4>Generate with /init</h4>
+        <pre><code>/init</code></pre>
+        <p>Automatically creates AGENTS.md with your project structure, coding conventions, and architecture.</p>
+    </div>
+    
+    <h3 style="margin-top: 32px;">What It Includes</h3>
+    <ul>
+        <li>Project structure & file organization</li>
+        <li>Coding conventions & style guide</li>
+        <li>Build commands & scripts</li>
+        <li>Architecture decisions & patterns</li>
+    </ul>
+    
+    <div class="slide-number">12</div>
+</div>
+
+<!-- Slide 13: Best Practices -->
+<div class="slide">
+    <h2>💡 Best Practices</h2>
+    
+    <div class="do-dont">
+        <div class="do">
+            <h4>✅ Do: Ask Questions First</h4>
+            <ul>
+                <li>"What are best practices for..."</li>
+                <li>"What should I include in..."</li>
+                <li>"How do successful products..."</li>
+            </ul>
+        </div>
+        <div class="dont">
+            <h4>❌ Don't: Just Command</h4>
+            <ul>
+                <li>"Build me a landing page"</li>
+                <li>"Fix this bug"</li>
+                <li>"Write tests for this"</li>
+            </ul>
+        </div>
+    </div>
+    
+    <p class="gray" style="margin-top: 24px;">The more context you provide, the better the AI understands what you need.</p>
+    
+    <div class="slide-number">13</div>
+</div>
+
+<!-- Slide 14: Your First Project -->
+<div class="slide">
+    <h2>🎯 Try It Now</h2>
+    
+    <h3>Build a Landing Page</h3>
+    <pre><code>> Create a stunning landing page for an AI product with:
+- Animated hero section with gradient background
+- Feature cards with hover effects
+- Pricing table with 3 tiers
+- Footer with social links
+- Dark theme, modern typography
+
+> Deploy to Vercel when done</code></pre>
+    
+    <div class="card" style="margin-top: 32px;">
+        <h4>Pro Tip</h4>
+        <p>Press <code>Shift+Tab</code> to enable auto-accept mode for faster iteration!</p>
+    </div>
+    
+    <div class="slide-number">14</div>
+</div>
+
+<!-- Slide 15: Resources -->
+<div class="slide">
+    <h2>📚 Resources</h2>
+    
+    <div class="two-column">
+        <div>
+            <h3>Documentation</h3>
+            <ul>
+                <li><a href="https://docs.sylph.ai" style="color:#00D4FF">docs.sylph.ai</a></li>
+                <li><a href="https://docs.sylph.ai/getting-started/quickstart" style="color:#00D4FF">Quickstart Guide</a></li>
+                <li><a href="https://docs.sylph.ai/features/slash-commands" style="color:#00D4FF">Slash Commands</a></li>
+                <li><a href="https://docs.sylph.ai/features/keyboard-shortcuts" style="color:#00D4FF">Keyboard Shortcuts</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Get Help</h3>
+            <ul>
+                <li><a href="https://discord.gg/sylphai" style="color:#00D4FF">Discord</a></li>
+                <li><a href="https://github.com/SylphAI-Inc/adal-cli" style="color:#00D4FF">GitHub</a></li>
+                <li><a href="https://sylph.ai" style="color:#00D4FF">Website</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="slide-number">15</div>
+</div>
+
+<!-- Slide 16: Class Prep — Set Up MCP -->
+<div class="slide">
+    <h2>📋 Class Prep — Set Up MCP</h2>
+
+    <p>Before the landing page session, connect AdaL to <span class="green">browser tools</span> via MCP. Do this once before class starts.</p>
+
+    <h3>Step 1 — Add Chrome DevTools (Browser Automation)</h3>
+    <pre><code>/mcp add chrome-devtools --command npx --args "-y,chrome-devtools-mcp@latest"</code></pre>
+    <p class="gray">Enables: screenshots, DOM inspection, CSS extraction, computed styles, WebGL inspection, network interception</p>
+
+    <h3>Step 2 — Verify</h3>
+    <pre><code>/mcp
+# → Select the server → Test Connection
+# ✓ "X tools available"</code></pre>
+
+    <div class="card" style="margin-top: 24px;">
+        <h4>Why Chrome DevTools MCP?</h4>
+        <table style="margin-top: 12px;">
+            <tr>
+                <th>Capability</th>
+                <th>Use Case</th>
+            </tr>
+            <tr>
+                <td><span class="green">Browser Automation</span></td>
+                <td>Take screenshots, navigate pages, compare local vs reference</td>
+            </tr>
+            <tr>
+                <td><span class="cyan">Deep Inspection</span></td>
+                <td>Extract exact CSS, fonts, colors, background animations from any site</td>
+            </tr>
+        </table>
+    </div>
+
+    <p style="margin-top: 24px;">📖 Full MCP docs: <a href="https://docs.sylph.ai/features/mcp-support-proposed" style="color:#00D4FF">docs.sylph.ai/features/mcp</a></p>
+
+    <div class="slide-number">Prep</div>
+</div>
+
+<!-- Slide Class-0: What We're Building -->
+<div class="slide">
+    <h2>🏗️ What We're Building Today</h2>
+
+    <p>An <span class="green">AI-native newsletter platform (VibeBlog)</span>, built by stealing the premium layout of the Xtract Framer template.</p>
+
+    <div class="two-column" style="margin-top: 28px;">
+        <div class="card">
+            <h4>🎯 The Product (Our Copy)</h4>
+            <ul>
+                <li><span class="green">100% Data Ownership</span> — you own the database</li>
+                <li><span class="cyan">AI-First Workflow</span> — write in your IDE with Markdown + AI</li>
+                <li><span class="gold">Zero Cost</span> — Vercel + Resend = $0/month</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4>🛠️ Tech Stack & Why</h4>
+            <ul style="font-size: 15px;">
+                <li style="padding-bottom: 8px;"><span class="green">Next.js</span> — Instant hot-reloading for the fast "screenshot -> fix" iteration loop.</li>
+                <li style="padding-bottom: 8px;"><span class="cyan">Tailwind CSS v4</span> — Paste massive extracted math directly into classes (e.g. <code>shadow-[...]</code>).</li>
+                <li style="padding-bottom: 8px;"><span class="gold">Framer Motion</span> — Matches the exact buttery-smooth spring physics of premium templates.</li>
+                <li style="padding-bottom: 8px;"><span class="gray">HTML5 Video</span> — Zero-performance-cost way to render complex WebGL background rips.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 24px;">
+        <h4>🦸 Hero Section — Injecting Our Copy</h4>
+        <p class="gray" style="font-size: 15px; margin-bottom: 12px;"><em>The visual clone is just the first step. Next, we drop our product's copy into their million-dollar layout:</em></p>
+        <p style="margin-bottom: 12px;"><span class="gray">Badge:</span> <code style="background:#1a0a2e; color:#c084fc;">v1.0</code> &nbsp;Open Source Platform</p>
+        <p style="margin-bottom: 8px;"><span class="green">Headline:</span></p>
+        <p style="font-size:22px; font-weight:600; color:#fff; line-height:1.2; margin-bottom:12px;">"Intelligent Publishing<br>for Modern Creators."</p>
+        <p style="margin-bottom: 8px;"><span class="cyan">Subheadline:</span></p>
+        <p style="font-size:16px; color:#A0A0B0; margin-bottom:12px;">"Break free from platform lock-in. Craft posts with AI in your IDE, ship to web and email simultaneously, and own 100% of your audience."</p>
+        <p style="margin-bottom: 0;"><span class="gold">CTAs:</span> <code>Start writing ↗</code> (purple) &nbsp;+&nbsp; <code>View GitHub</code> (dark)</p>
+    </div>
+
+    <div class="slide-number">Class-0</div>
+</div>
+
+<!-- Slide Class-1: The 80% Sprint -->
+<div class="slide">
+    <h2>🚀 Class Step 1 — The 80% Sprint</h2>
+    
+    <p>You just need to tell AdaL: <span class="cyan">"Here is the reference website, let's clone the hero page."</span></p>
+
+    <div class="card" style="margin-top: 28px;">
+        <h4>🤖 Agent Does the Heavy Lifting (80% Auto)</h4>
+        <ul>
+            <li><span class="gold">BashTool:</span> Scaffolds the Next.js + Tailwind project framework via terminal.</li>
+            <li><span class="gold">FetchURLContent:</span> Grabs the raw text and macro structure of the target page.</li>
+            <li><span class="gold">Chrome DevTools MCP:</span> Navigates to the URL and takes a screenshot for visual grounding.</li>
+            <li><span class="gold">EditFileTool:</span> Writes the initial React component tree (Navbar, Hero) with ~80% accuracy.</li>
+        </ul>
+    </div>
+
+    <div class="card" style="margin-top: 20px; background: rgba(0,255,136,0.05); border-color: #00FF88;">
+        <h4>✅ The 80% Result</h4>
+        <p>You'll quickly get a working local dev server running with the correct layout, text, and base colors. However, complex glows, WebGL backgrounds, and exact typography wrapping will likely be fast approximations.</p>
+    </div>
+
+    <p class="gray" style="margin-top: 20px;">💡 Goal: Get the structure on the screen as fast as possible without getting bogged down in pixel-pushing.</p>
+
+    <div class="slide-number">Class-1</div>
+</div>
+
+<!-- Slide Class-2: The 20% Polish -->
+<div class="slide">
+    <h2>💎 Class Step 2 — The 20% Polish</h2>
+    
+    <p>This is where you act as the Art Director to help AdaL push the clone from "looks close" to <span class="green">100% pixel-perfect</span>.</p>
+
+    <div class="two-column" style="margin-top: 24px;">
+        <div class="card">
+            <h4>🤖 AdaL's Job: Deep DOM & Two-Tab Verification</h4>
+            <p>AdaL drives the browser automation to close the visual gap:</p>
+            <ul style="font-size: 15px;">
+                <li>Opens the reference site and your localhost side-by-side.</li>
+                <li>Performs the "Stitch Test" to hunt for micro-deviations.</li>
+                <li>Uses Deep DOM Interrogation (Sniper CSS) to extract exact multi-stop gradients, multi-layer box shadows, and WebGL <code>&lt;canvas&gt;</code> loops.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4>👀 Your Job: Art Director & QA</h4>
+            <p>Observe AdaL's process and provide corrective visual feedback.</p>
+            <pre><code style="font-size: 13px;">"The purple orbit is a muddy blob, you used too much blur. Check the exact linear-gradient."</code></pre>
+            <p style="font-size: 15px; margin-top: 12px;">If AdaL accidentally approximates a glow or misinterprets a layout gap, point it out. Your job is to validate the agent's logic against your own "Eye Test".</p>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 24px; background: rgba(0,212,255,0.05); border-color: #00D4FF;">
+        <h4>🔄 The Professional Iteration Loop</h4>
+        <pre><code>1. AdaL: Stitches screenshots of localhost vs reference and spots differences.
+2. You: "The 'Book a call' button shadow is missing. Extract the outerHTML."
+3. AdaL: Uses DevTools MCP to steal the exact 6-layer rgba box-shadow.
+4. AdaL: Applies the precise Tailwind class + hot reloads.
+5. Result: 100% Pixel Perfect!</code></pre>
+    </div>
+
+    <div class="slide-number">Class-2</div>
+</div>
+
+<!-- Slide Class-3: Inject & Systematize -->
+<div class="slide">
+    <h2>✨ Class Step 3 — Inject & Systematize</h2>
+    
+    <p>The clone is just the vessel. Now it's time to drop in your own copy and evolve the design system to fit your brand.</p>
+
+    <div class="three-column" style="margin-top: 28px;">
+        <div class="card">
+            <h4>📝 1. Inject Your Copy</h4>
+            <p>Swap the generic template text with your actual product messaging (VibeBlog). Watch how your real value props fit into the premium layout.</p>
+        </div>
+        <div class="card">
+            <h4>🎨 2. Style & Font Variants</h4>
+            <p>Experiment to shift the "Vibe". Ask AdaL to swap the typography (e.g., from Figtree to Space Grotesk) or tweak the accent colors to make it unique.</p>
+        </div>
+        <div class="card">
+            <h4>📐 3. Systematize the Design</h4>
+            <p>Look at the design holistically. Define your primary UI tokens (border radiuses, glassmorphism opacities, CTA gradients) to reuse across other sections.</p>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 24px; background: rgba(0,255,136,0.05); border-color: #00FF88;">
+        <h4>💬 Example Prompts for AdaL</h4>
+        <pre><code>> "Replace the hero copy with our VibeBlog messaging."
+> "Let's try a different font variant. Swap Figtree for Space Grotesk."
+> "Extract the CSS for that glassmorphic badge so we can make it a reusable UI component."</code></pre>
+    </div>
+
+    <div class="slide-number">Class-3</div>
+</div>
+
+</body>
+</html>

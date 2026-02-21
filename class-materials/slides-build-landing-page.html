@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building the Landing Page - Vibe Coding</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0A0E1A; color: #FFFFFF; line-height: 1.6;
+        }
+        .slide {
+            min-height: 100vh; padding: 60px 80px; display: flex; flex-direction: column; justify-content: center;
+            background: linear-gradient(135deg, #0A0E1A 0%, #1A1F3A 100%);
+            border-bottom: 1px solid #141828;
+        }
+        h1 {
+            font-size: 56px; font-weight: 700; margin-bottom: 24px;
+            background: linear-gradient(90deg, #00FF88, #00D4FF);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        h2 { font-size: 42px; font-weight: 600; margin-bottom: 32px; color: #00FF88; }
+        h3 { font-size: 28px; font-weight: 600; margin-bottom: 20px; color: #00D4FF; }
+        p { font-size: 20px; color: #A0A0B0; margin-bottom: 16px; }
+        .subtitle { font-size: 24px; color: #A0A0B0; margin-bottom: 40px; }
+        code {
+            font-family: 'JetBrains Mono', monospace; background: #141828; padding: 4px 12px;
+            border-radius: 6px; font-size: 16px; color: #00FF88;
+        }
+        pre {
+            background: #141828; padding: 24px; border-radius: 12px; overflow-x: auto;
+            margin: 16px 0; border: 1px solid #2A2F4A;
+        }
+        pre code { background: none; padding: 0; font-size: 15px; line-height: 1.8; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .card { background: #141828; padding: 24px; border-radius: 12px; border: 1px solid #2A2F4A; }
+        .card h4 { font-size: 18px; color: #00FF88; margin-bottom: 12px; }
+        ul { list-style: none; padding: 0; }
+        ul li { padding: 12px 0; padding-left: 32px; position: relative; font-size: 18px; color: #E0E0E0; }
+        ul li::before { content: "→"; position: absolute; left: 0; color: #00FF88; }
+        .badge {
+            display: inline-block; background: #00FF88; color: #0A0E1A; padding: 8px 16px;
+            border-radius: 20px; font-size: 14px; font-weight: 600; margin-right: 12px;
+        }
+        .slide-number { position: fixed; bottom: 30px; right: 40px; font-size: 14px; color: #4A4A5A; }
+        .green { color: #00FF88; }
+        .cyan { color: #00D4FF; }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide">
+    <h1>🎨 Building the UI</h1>
+    <p class="subtitle">Mastering UI/UX Generation with Gemini 3.1 Pro</p>
+    <p>How to architect, prompt, and build a stunning landing page in minutes.</p>
+    <div style="margin-top: 40px;">
+        <span class="badge">Day 1</span>
+        <span class="badge" style="background:#00D4FF; color:black;">Gemini 3.1 Pro</span>
+    </div>
+    <div class="slide-number">1</div>
+</div>
+
+<!-- Slide 2: Project Scope -->
+<div class="slide">
+    <h2>🎯 Project Scope</h2>
+    <div class="two-column">
+        <div>
+            <h3>The Goal</h3>
+            <p>Build the rest of the high-conversion SaaS landing page for VibeBlog (below our perfect Hero clone).</p>
+            <h3>The Stack</h3>
+            <ul>
+                <li>Next.js (App Router) + TypeScript</li>
+                <li>Tailwind CSS v4 (Styling)</li>
+                <li>Lucide React (Icons)</li>
+                <li>Framer Motion (Animations)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4>Required Sections</h4>
+            <ul>
+                <li>Hero (Hook & CTA)</li>
+                <li>Problem vs. Solution (Value Prop)</li>
+                <li>Curriculum / Features</li>
+                <li>Pricing / Awards</li>
+                <li>Footer</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">2</div>
+</div>
+
+<!-- Slide 3: Why Gemini 3.1 Pro? -->
+<div class="slide">
+    <h2>🧠 Why Gemini 3.1 Pro?</h2>
+    <p>We use different models for different tasks. For frontend and design, Gemini is king.</p>
+    <div class="card" style="margin-top: 24px;">
+        <h4>To switch models in AdaL:</h4>
+        <pre><code>/model gemini-3.1-pro-preview</code></pre>
+    </div>
+    <ul style="margin-top: 24px;">
+        <li><span class="green">Aesthetic Intuition:</span> It understands modern design trends (glassmorphism, dark mode, gradients).</li>
+        <li><span class="green">Tailwind Mastery:</span> Writes incredibly clean and complex Tailwind class combinations.</li>
+        <li><span class="green">Animation Aware:</span> Knows exactly how to integrate Framer Motion for smooth reveals.</li>
+    </ul>
+    <div class="slide-number">3</div>
+</div>
+
+<!-- Slide 4: The Workflow -->
+<div class="slide">
+    <h2>🔄 The PM / Design Engineer Workflow</h2>
+    <p>Work as a <strong>Product Manager</strong> with your <strong>Design Engineer (AdaL)</strong>. Skip traditional UI tools like Figma—they were just intermediate artifacts when code was expensive. Now, code is cheap and instant. Define your product, find a reference, and iterate directly in code.</p>
+    <div class="three-column" style="margin-top: 32px;">
+        <div class="card">
+            <h4>Stage 1: The Proposal</h4>
+            <p>Define your copy, brand, and vibe <strong>first</strong>. This helps you find a premium reference template that perfectly matches your vision.</p>
+        </div>
+        <div class="card">
+            <h4>Stage 2: Scaffold (The 80%)</h4>
+            <p>Hand AdaL the reference template. Let it handle the setup and build the 80% structural clone instantly.</p>
+        </div>
+        <div class="card">
+            <h4>Stage 3: Brand Polish (The 20%)</h4>
+            <p>Iterate with AdaL to inject your proposal's copy, align the template with your brand tokens, and push to 100% pixel-perfect.</p>
+        </div>
+    </div>
+    <div class="slide-number">4</div>
+</div>
+
+<!-- Slide 5: Stage 1 - Proposal -->
+<div class="slide">
+    <h2>📝 Stage 1: The Proposal (Finding your North Star)</h2>
+    <p>Role-program your agent! Hand over your PRD and establish the brand <strong>before</strong> picking a template.</p>
+    <pre><code>@docs/product-research.md
+
+I am the Product Manager. You are the Lead Design Engineer.
+Before we write code or look at templates, generate a PROPOSAL.md covering:
+1. Our hero section copy (Headline, subheadline, CTAs)
+2. Color palette & typography (e.g., "Deep space, neon purple")
+3. UI component styling rules
+
+This will be our "North Star" for the project.</code></pre>
+    
+    <div class="card" style="margin-top: 24px; background: rgba(0,212,255,0.05); border-color: #00D4FF;">
+        <h4>🎨 Optional: Pick a Premium Template (e.g., Framer)</h4>
+        <p style="font-size: 15px;">After defining your proposal, optionally browse <a href="https://www.framer.com/marketplace/" style="color:#00D4FF;">Framer Marketplace</a> for a template that matches your vibe. Work <strong>together with the agent</strong> using the <span class="green">Image Read</span> tool to select the best fit.</p>
+        <pre><code style="font-size: 13px;">@template_screenshot.png
+
+This template matches our proposal's vibe perfectly!
+Add it to PROPOSAL.md as our reference template.</code></pre>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+        <h4>📋 The PROPOSAL.md Output</h4>
+        <p style="font-size: 15px;">Your proposal becomes the single source of truth:</p>
+        <ul style="font-size: 14px; margin-top: 12px;">
+            <li><span class="green">project_link</span> — URL to your product/PRD</li>
+            <li><span class="green">template_picked</span> — Reference template link & screenshot</li>
+            <li><span class="green">brand_guideline</span> — Colors, typography, spacing, component tokens</li>
+        </ul>
+        <p style="font-size: 14px; margin-top: 12px; color: #A0A0B0;">💡 <strong>Iterate as you go</strong> — Update PROPOSAL.md as you refine the design!</p>
+    </div>
+    
+    <p class="cyan" style="margin-top: 20px;">💡 <strong>Why?</strong> Knowing your exact brand and copy makes it easy to go out and find a premium reference template (like Xtract or Framer) that already matches your vibe!</p>
+    <div class="slide-number">5</div>
+</div>
+
+<!-- Slide 6: Stage 2 - Scaffold & Execute -->
+<div class="slide">
+    <h2>🚀 Stage 2: The 80% Scaffold</h2>
+    <p>Once you have your proposal, find a reference site that matches it. <strong>Let the agent do the heavy lifting</strong> — it knows the workflow!</p>
+    
+    <div class="card" style="margin-top: 16px; background: rgba(0,212,255,0.05); border-color: #00D4FF;">
+        <h4>👤 Your Job</h4>
+        <p style="font-size: 16px;">Hand over <code>@PROPOSAL.md</code> + reference screenshot, then <strong>review the results</strong>!</p>
+    </div>
+
+    <div class="card" style="margin-top: 24px;">
+        <h4>🤖 Agent Handles Everything (80% Auto)</h4>
+        <pre><code>Agent automatically:
+1. Bash (background) → Starts dev server
+2. Chrome DevTools MCP → Screenshots, extracts CSS
+3. Edits files → hot-reload → iterates until 80% done
+4. You just review the results!</code></pre>
+    </div>
+
+    <div class="two-column" style="margin-top: 24px;">
+        <div>
+            <h3>The Initial Clone</h3>
+            <pre><code>@PROPOSAL.md @reference_screenshot.png
+This reference matches our proposal. 
+
+Scaffold Next.js/Tailwind, start dev server,
+clone the hero section, inject our copy.</code></pre>
+        </div>
+        <div>
+            <h3>Delegating Next Sections</h3>
+            <pre><code>@src/app/page.tsx
+Great job on hero. Now build "Services".
+Extract grid from reference, apply our brand colors.</code></pre>
+        </div>
+    </div>
+    <div class="slide-number">6</div>
+</div>
+
+<!-- Slide 7: Stage 3 - Review & Polish -->
+<div class="slide">
+    <h2>✨ Stage 3: Brand Alignment & Polish</h2>
+    <p>The 80% clone is done. Now, act as the Art Director. Compare the localhost to your Proposal and the Reference, and iterate to perfection.</p>
+    <div class="two-column" style="margin-top: 24px;">
+        <div class="card">
+            <h4>Aligning with the Brand</h4>
+            <pre><code>The layout is good, but the glowing CTA doesn't match our PROPOSAL.md.
+Extract the exact multi-stop CSS gradient from the reference site and apply it to our button.</code></pre>
+        </div>
+        <div class="card">
+            <h4>Refining Aesthetics</h4>
+            <pre><code>The text wrapping is off. 
+Extract the exact container max-width from the reference site so our hero copy breaks on the exact same words.</code></pre>
+        </div>
+    </div>
+    <p class="cyan" style="margin-top: 24px;">💡 <strong>Why?</strong> The proposal is your anchor. You are using the reference site's premium layout math to achieve your brand's specific vision.</p>
+    <div class="slide-number">7</div>
+</div>
+
+<!-- Slide 8: Pro-Tips for Managing Gemini -->
+<div class="slide">
+    <h2>💡 Pro-Tips for Managing Gemini</h2>
+    <ul>
+        <li><strong>Be specific about aesthetics:</strong> Instead of "make it look good", direct them: "Use dark frosted glass cards with 1px semi-transparent borders and subtle neon glows on hover."</li>
+        <li><strong>Give it constraints:</strong> "Ensure the padding is consistent (py-24) across all sections."</li>
+        <li><strong>Visual Feedback:</strong> If something looks off, take a screenshot, drop it into the terminal, and ask "Why is this button misaligned?"</li>
+        <li><strong>Mobile First:</strong> Always remind your engineer: "Make sure the grid collapses to 1 column on mobile (md:grid-cols-2)."</li>
+    </ul>
+    <div class="slide-number">8</div>
+</div>
+
+<!-- Slide 9: Try it! -->
+<div class="slide">
+    <h2>🚀 Your Turn, PM</h2>
+    <p>Switch to Gemini, hand over your PRD, and start managing your engineer!</p>
+    <div class="card" style="margin-top: 32px; text-align: center; border-color: #00FF88;">
+        <h3 style="margin-bottom: 0;">1. <code>/model gemini-3.1-pro-preview</code></h3><br>
+        <h3 style="margin-bottom: 0;">2. Handover PRD with <code>@</code> & work together on the proposal</h3><br>
+        <h3 style="margin-bottom: 0;">3. <code>Shift+Tab</code> (Auto-Accept ON)</h3><br>
+        <h3 style="margin-bottom: 0; color: #00FF88;">4. Ship it & Polish!</h3>
+    </div>
+    <div class="slide-number">9</div>
+</div>
+
+</body>
+</html>
