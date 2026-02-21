@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="assets/adal-face-logo.svg" width="100" alt="AdaL Face Logo" />
+  <br/>
+  <img src="assets/adal-text-logo.svg" width="300" alt="AdaL Text Logo" />
+</p>
+
 # AdaL Vibecoding Bootcamp
 
 Welcome to the AdaL Vibecoding Bootcamp repository! 🚀
