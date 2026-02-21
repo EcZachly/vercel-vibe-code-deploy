@@ -11,18 +11,28 @@ Welcome to the AdaL Vibecoding Bootcamp repository! 🚀
 
 This repository contains all the materials, curriculum, and code projects for the bootcamp.
 
-## 📚 Repository Structure
+## 🗓️ Bootcamp Schedule
 
-- `class-materials/`: Contains the core learning resources for the bootcamp, including:
-  - **Curriculum** (`01_bootcamp_curriculum_short.md`): Overview of the bootcamp structure and goals.
-  - **Presentation Slides**:
-    - `slides-build-landing-page.html`: Guide on vibecoding a landing page.
-    - `slides-adal-cli-howto.html`: Instructions on using the AdaL CLI tool.
-- `landing-page/`: **Day 1: Clone the style of any website** - First vibecoding session where an AI agent using Gemini 3.1 Pro clones a **reference URL** into a Next.js project.
+- 🎨 **Day 1: Clone the style of any website**
+  - Learn to use an AI agent (Gemini 3.1 Pro) to clone a reference URL into a Next.js project.
   - **Marketplace Example**: [Framer Templates](https://www.framer.com/marketplace/templates)
   - **The example we use**: [xtract.framer.ai](https://xtract.framer.ai/)
-- `landing_page_2/`: **Day 2: Build the backend** (Tutor: Zach Wilson) - Second vibecoding session where an AI agent using Gemini 3.1 Pro clones a **reference URL** into a Next.js project.
-- `AGENTS.md`: Guidelines and context for AI agents working in this repository.
+
+- ⚙️ **Day 2: Build the backend**
+  - **Tutor**: Zach Wilson
+  - Transition from the frontend landing page to building a robust backend infrastructure.
+
+---
+
+## 📚 Repository Structure
+
+- 📂 **`class-materials/`**: Core learning resources.
+  - 📄 `01_bootcamp_curriculum_short.md`: Bootcamp structure and goals.
+  - 📊 `slides-build-landing-page.html`: Guide on vibecoding a landing page.
+  - 📊 `slides-adal-cli-howto.html`: Instructions on using the AdaL CLI tool.
+- 💻 **`landing-page/`**: First vibecoding session code for the landing page clone.
+- 💻 **`landing_page_2/`**: Second vibecoding session code for the landing page clone.
+- 🤖 **`AGENTS.md`**: Guidelines and context for AI agents working in this repository.
 
 ## 🛠️ Getting Started
 
