@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="assets/adal-face-logo.svg" width="100" alt="AdaL Face Logo" />
-  <br/>
-  <img src="assets/adal-text-logo.svg" width="300" alt="AdaL Text Logo" />
+  <img src="assets/adal-face-logo.svg" height="80" alt="AdaL Face Logo" style="vertical-align: middle; margin-right: 15px;" />
+  <img src="assets/adal-text-logo.svg" height="80" alt="AdaL Text Logo" style="vertical-align: middle;" />
 </p>
 
 # AdaL Vibecoding Bootcamp
