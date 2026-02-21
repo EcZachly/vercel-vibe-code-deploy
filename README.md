@@ -6,9 +6,13 @@ This repository contains all the materials, curriculum, and code projects for th
 
 ## 📚 Repository Structure
 
-- `class-materials/`: Presentation slides and the bootcamp curriculum.
-- `landing-page/`: Original Next.js landing page project.
-- `landing_page_2/`: Updated Next.js landing page project with additional features.
+- `class-materials/`: Contains the core learning resources for the bootcamp, including:
+  - **Curriculum** (`01_bootcamp_curriculum_short.md`): Overview of the bootcamp structure and goals.
+  - **Presentation Slides**:
+    - `slides-build-landing-page.html`: Guide on vibecoding a landing page.
+    - `slides-adal-cli-howto.html`: Instructions on using the AdaL CLI tool.
+- `landing-page/`: First vibecoding session where an AI agent using Gemini 3.1 Pro clones a reference URL into a Next.js project.
+- `landing_page_2/`: Second vibecoding session where an AI agent using Gemini 3.1 Pro clones a reference URL into a Next.js project.
 - `AGENTS.md`: Guidelines and context for AI agents working in this repository.
 
 ## 🛠️ Getting Started

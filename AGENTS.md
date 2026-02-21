@@ -7,8 +7,8 @@ This repository contains materials and code for the AdaL Vibecoding Bootcamp.
 
 ## Repository Structure
 - `class-materials/`: Contains presentation slides and the bootcamp curriculum.
-- `landing-page/`: Original Next.js landing page project.
-- `landing_page_2/`: Updated Next.js landing page project with additional features.
+- `landing-page/`: First vibecoding session where an AI agent using Gemini 3.1 Pro clones a reference URL into a Next.js project.
+- `landing_page_2/`: Second vibecoding session where an AI agent using Gemini 3.1 Pro clones a reference URL into a Next.js project.
 
 ## Guidelines for AI Agents
 - **Next.js**: Both landing page projects use Next.js with the App Router.
