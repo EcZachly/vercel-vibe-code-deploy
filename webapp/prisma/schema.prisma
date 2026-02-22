@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum SubscriberStatus {
+  ACTIVE
+  UNSUBSCRIBED
+}
+
+model Author {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  posts     Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id               String     @id @default(uuid())
+  title            String     @default("")
+  contentMarkdown  String     @db.Text
+  author           Author     @relation(fields: [authorId], references: [id])
+  authorId         String
+  isPaid           Boolean    @default(false)
+  status           PostStatus @default(DRAFT)
+  emailSentAt      DateTime?
+  publishedAt      DateTime?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  @@index([authorId])
+  @@index([status])
+}
+
+model Subscriber {
+  id        String           @id @default(uuid())
+  email     String           @unique
+  status    SubscriberStatus @default(ACTIVE)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}

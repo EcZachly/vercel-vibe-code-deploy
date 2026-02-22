@@ -13,8 +13,8 @@ The architecture follows a modern, decoupled "Git-as-CMS" pattern:
 - **Frontend (Next.js 14 + Tailwind):** Statically generates blog pages from the local `.md` files for blazing fast SEO and performance.
 - **Backend (Node.js + Express):** A lightweight API responsible for managing newsletter subscribers and handling the secure dispatch of emails.
 - **Database (PostgreSQL + Prisma):** Stores subscriber lists and tracks which posts have already been emailed (idempotency).
-- **Automation (GitHub Actions):** The orchestrator. Pushing a new markdown file to the `main` branch triggers a workflow that hits the backend API to sync posts and dispatch the newsletter.
-- **Email Delivery:** Integrated with the **Resend API** for high-deliverability, styled HTML emails.
+- **Email Delivery (Resend API):** Integrated with the **Resend API** for high-deliverability, styled HTML emails.
+- **Payments (use Stripe):** authors can offer paid or free subscriptions for their publications (every post can be free or paid). 
 
 ---
 
@@ -25,9 +25,10 @@ The architecture follows a modern, decoupled "Git-as-CMS" pattern:
    - Build a high-performance static blog inspired by the design of [blog.sylph.ai](https://blog.sylph.ai/).
    - Create a home page listing all published markdown posts, and dynamic individual pages for each blog post.
    - **Newsletter Subscribe Component:** Integrate an email capture form prominently on the home blog listing and at the bottom of individual blog posts to drive audience growth.
-2. **The "Push-to-Publish" Pipeline:**
-   - A GitHub Action that detects new markdown files in the `posts/` directory.
-   - Automatically parses the YAML frontmatter (title, date, excerpt, status).
+   - **Unsubscribe Component:** Allow subscribers to unsubscribe from the newsletter at any time.
+   - **Manage Payment Component:** Allow subscribes to unsubscribe, refund, or cancel their paid subscriptions through Stripe
+   - **Author Post Component:** Allow authors to create a new post inside of a editor on the frontend
+   - **Author Publish Component:** Allow authors to publish their post to the blog and send the email once they're done editing it.
 2. **Automated Newsletter Dispatch:**
    - Converts Markdown to HTML.
    - Injects content into a branded, dark-themed email template matching the frontend.
@@ -39,29 +40,47 @@ The architecture follows a modern, decoupled "Git-as-CMS" pattern:
    - Secure unsubscribe links appended to every outgoing email.
 5. **Local Testing CLI:**
    - A developer script (`scripts/send-post.ts`) to send draft posts to a test email address (with a `[TEST]` prefix) before merging to `main`.
-
+6. **Authentication Feature:**
+   - Use Supabase OAuth to authenticate all Author users.
+7. **Security Features:**
+   - Make sure all secret keys like Stripe, Resend, Supabase, etc are all in environment files and never exposed on the frontend.
+   - Make sure the email send API is rate limited so authors can't spam users more than once per day
+   - A post can only be as big as a standard email allows
+   - Make sure to check for malicious code inside the email body (to prevent XSS attacks)
 ---
 
 ## 🗄️ 3. Database Design
 
 The database schema (managed via Prisma) is intentionally lightweight, focusing entirely on newsletter logistics rather than content storage:
 
-### `Subscriber` Table
+
+### `Author` Table
 Stores the mailing list audience.
 - `id` (UUID, Primary Key)
-- `email` (String, Unique)
-- `status` (Enum: `ACTIVE`, `UNSUBSCRIBED`)
+- `name` (String)
+- `email` (String)
 - `createdAt` (DateTime)
 - `updatedAt` (DateTime)
 
-### `PostDelivery` (or `Post`) Table
-Tracks email campaigns to ensure idempotency. It does *not* store the post body (since Git handles that), just the metadata.
+### `Post` Table
+Stores the mailing list audience.
 - `id` (UUID, Primary Key)
-- `slug` (String, Unique) - Matches the Markdown filename.
-- `title` (String)
-- `emailSentStatus` (Enum: `PENDING`, `PROCESSING`, `COMPLETED`, `FAILED`)
-- `sentAt` (DateTime, Nullable)
+- `content_markdown` (String, Unique)
+- `author_id` (FOREIGN KEY to `Author`)
+- `is_paid` (Boolean)
+- `status` (Published, Draft, or Archived)
+- `publishedAt` (DateTime)
 - `createdAt` (DateTime)
+- `updatedAt` (DateTime)
+
+### `Subscriber` Table
+Stores the mailing list audience.
+- `id` (UUID, Primary Key)
+- `authorId` (FOREIGN KEY to `Author)
+- `email` (String)
+- `status` (Enum: `ACTIVE`, `UNSUBSCRIBED`)
+- `createdAt` (DateTime)
+- `updatedAt` (DateTime)
 
 ---
 
